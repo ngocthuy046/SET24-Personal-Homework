@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Exercise</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/1200px-W3Schools_logo.svg.png"
+            class="header__logo" alt="header logo">
+        <div class="header__menu-left">
+            <button class="menu-left__button-dropdown"> Tutorials
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <button class="menu-left__button-dropdown"> Exercises
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <button class="menu-left__button-dropdown"> Certificates
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <button class="menu-left__button-dropdown"> Services
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <input type="search" placeholder="search...">
+            <div class="darkmode__toggle"></div>
+        </div>
+
+        <div class="header__menu-right">
+            <button class="menu-right__button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 12 16" fill="none"
+                    aria-hidden="true">
+                    <path
+                        d="M6.65723 6.24707C6.76704 5.91764 7.233 5.91765 7.34281 6.24707L7.98828 8.1835C8.276 9.04666 8.95332 9.72399 9.81648 10.0117L11.7529 10.6572C12.0824 10.767 12.0824 11.233 11.7529 11.3428L9.81649 11.9883C8.95332 12.276 8.27599 12.9533 7.98828 13.8165L7.34281 15.7529C7.233 16.0823 6.76704 16.0823 6.65723 15.7529L6.01173 13.8165C5.72401 12.9533 5.04669 12.276 4.18353 11.9883L2.24707 11.3428C1.91764 11.233 1.91764 10.767 2.24707 10.6572L4.18353 10.0117C5.04669 9.72399 5.72401 9.04667 6.01173 8.18352L6.65723 6.24707Z"
+                        fill="#9763f6"></path>
+                    <path
+                        d="M2.79434 1.14824C2.86023 0.950586 3.1398 0.950587 3.20569 1.14824L3.59297 2.3101C3.7656 2.828 4.172 3.2344 4.6899 3.40703L5.85177 3.79432C6.04942 3.86021 6.04942 4.13978 5.85177 4.20567L4.6899 4.59296C4.172 4.76559 3.7656 5.17199 3.59297 5.68989L3.20569 6.85176C3.13981 7.04941 2.86023 7.04942 2.79434 6.85176L2.40704 5.68988C2.23441 5.17198 1.82801 4.76559 1.31012 4.59296L0.148241 4.20567C-0.0494137 4.13978 -0.0494138 3.86021 0.148241 3.79432L1.31012 3.40703C1.82802 3.2344 2.23441 2.82801 2.40704 2.31011L2.79434 1.14824Z"
+                        fill="#9763f6"></path>
+                    <path
+                        d="M9.8629 0.0988265C9.90682 -0.032943 10.0932 -0.0329419 10.1371 0.098828L10.3953 0.873401C10.5104 1.21867 10.7813 1.4896 11.1266 1.60469L11.9012 1.86288C12.0329 1.9068 12.0329 2.09319 11.9012 2.13711L11.1266 2.39531C10.7813 2.51039 10.5104 2.78133 10.3953 3.12659L10.1371 3.90117C10.0932 4.03294 9.90682 4.03294 9.8629 3.90117L9.6047 3.12659C9.48961 2.78132 9.21868 2.5104 8.87342 2.39531L8.09883 2.13711C7.96706 2.09319 7.96706 1.9068 8.09883 1.86288L8.87342 1.60469C9.21868 1.4896 9.48961 1.21867 9.6047 0.873408L9.8629 0.0988265Z"
+                        fill="#9763f6"></path>
+                </svg>
+                Plus
+            </button>
+            <button class="menu-right__button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" aria-hidden="true">
+                    <path
+                        d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                        fill="#9763f6"></path>
+                </svg>
+                Spaces
+            </button>
+            <button class="menu-right__button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" aria-hidden="true">
+                    <path
+                        d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"
+                        fill="#9763f6"></path>
+                </svg>
+                Get Certified
+            </button>
+            <button class="login__button"> Log in
+                <i class="fa fa-user"></i>
+            </button>
+        </div>
+    </header>
+    <!--Tabmenu-->
+    <div class="tab-menu">
+        <a class="tab-menu__tab-item--active"> HTML </a>
+        <a class="tab-menu__tab-item"> CSS </a>
+        <a class="tab-menu__tab-item"> JavaScript </a>
+        <a class="tab-menu__tab-item"> SQL </a>
+        <a class="tab-menu__tab-item"> Python </a>
+        <a class="tab-menu__tab-item"> Java </a>
+        <a class="tab-menu__tab-item"> PHP </a>
+        <a class="tab-menu__tab-item"> How to </a>
+        <a class="tab-menu__tab-item"> W3.CSS </a>
+        <a class="tab-menu__tab-item"> C </a>
+        <a class="tab-menu__tab-item"> C++ </a>
+        <a class="tab-menu__tab-item"> C# </a>
+        <a class="tab-menu__tab-item"> Bootstrap </a>
+        <a class="tab-menu__tab-item"> React </a>
+        <a class="tab-menu__tab-item"> MySQL </a>
+        <a class="tab-menu__tab-item"> JQUERY </a>
+        <a class="tab-menu__tab-item"> Excel </a>
+        <a class="tab-menu__tab-item"> XML </a>
+    </div>
+    <!-- Main body container -->
+    <div class="content__container">
+        <aside class="sidebar">
+            <!-- HTML Tutorial -->
+            <div class="topic">
+                <h3 class="topic__title"> HTML Tutorial </h3>
+                <div class="topic__link">
+                    <a href="" class="topic-link__item--active"> HTML HOME </a>
+                    <a href="" class="topic-link__item"> HTML Introduction </a>
+                    <a href="" class="topic-link__item"> HTML Editors </a>
+                    <a href="" class="topic-link__item"> HTML Basic </a>
+                    <a href="" class="topic-link__item"> HTML Elements </a>
+                    <a href="" class="topic-link__item"> HTML Attribute </a>
+                    <a href="" class="topic-link__item"> HTML Charsets </a>
+                    <a href="" class="topic-link__item"> HTML Headings </a>
+                    <a href="" class="topic-link__item"> HTML Paragraphs </a>
+                    <a href="" class="topic-link__item"> HTML Styles </a>
+                    <a href="" class="topic-link__item"> HTML Formatting </a>
+                    <a href="" class="topic-link__item"> HTML Quotations </a>
+
+                </div>
+            </div>
+            <!-- HTML Forms -->
+            <div class="topic">
+                <h3 class="topic__title"> HTML Forms </h3>
+                <div class="topic__link">
+                    <a href="" class="topic-link__item"> HTML Forms </a>
+                    <a href="" class="topic-link__item"> HTML Form Attributes </a>
+                    <a href="" class="topic-link__item"> HTML Form Elements </a>
+                    <a href="" class="topic-link__item"> HTML Input Types </a>
+                    <a href="" class="topic-link__item"> HTML Input Attributes </a>
+                    <a href="" class="topic-link__item"> Input Form Attributes </a>
+                </div>
+            </div>
+            <!-- HTML Graphics -->
+            <div class="topic">
+                <h3 class="topic__title"> HTML Graphics </h3>
+                <div class="topic__link">
+                    <a href="" class="topic-link__item"> HTML Canvas </a>
+                    <a href="" class="topic-link__item"> HTML SVG </a>
+                </div>
+            </div>
+            <!-- HTML Media -->
+            <div class="topic">
+                <h3 class="topic__title"> HTML Media </h3>
+                <div class="topic__link">
+                    <a href="" class="topic-link__item"> HTML Media </a>
+                    <a href="" class="topic-link__item"> HTML Video </a>
+                    <a href="" class="topic-link__item"> HTML Audio </a>
+                    <a href="" class="topic-link__item"> HTML Plug-ins </a>
+                    <a href="" class="topic-link__item"> HTML YouTube </a>
+                </div>
+            </div>
+            <!-- HTML APIs -->
+            <div class="topic">
+                <h3 class="topic__title"> HTML APIs </h3>
+                <div class="topic__link">
+                    <a href="" class="topic-link__item"> HTML Geolocation </a>
+                    <a href="" class="topic-link__item"> HTML Drag/Drop </a>
+                    <a href="" class="topic-link__item"> HTML Web Storage </a>
+                    <a href="" class="topic-link__item"> HTML Web Workers </a>
+                    <a href="" class="topic-link__item"> HTML SSE </a>
+                </div>
+            </div>
+        </aside>
+        <section class="section">
+            <!-- Main Section -->
+            <div class="section-main">
+                <div class="section__center">
+                    <!-- Google ads -->
+                    <div class="container__google-ads">
+                        <div class="ads__container">
+                            <div class="ads__content">
+                                <h4>Here is ads subtitle</h4>
+                                <p class="text__body--medium">Here is ads detail</p>
+                            </div>
+                            <button class="ads__button"> View more </button>
+                        </div>
+                    </div>
+                    <!-- Main Content -->
+                    <h1> HTML Tutorial </h1>
+                    <div class="prenext">
+                        <button class="button__button-primary"> Home </button>
+                        <button class="button__button-primary"> Next </button>
+                    </div>
+                    <div class="container__topic-infomation">
+                        <p class="text__body--medium"> HTML is the standard markup language for Web pages. </p>
+                        <p class="text__body--medium"> With HTML you can create your own Website. </p>
+                        <p class="text__body--medium"> HTML is easy to learn - You will enjoy it! </p>
+                        <button class="button__button-primary"> Study our free HTML Tutorial » </button>
+                    </div>
+                    <hr>
+                    <!-- Try it Yourself -->
+                    <h2> Easy Learning with HTML "Try it Yourself" </h2>
+                    <p class="text__body--medium"> With our "Try it Yourself" editor, you can edit the HTML code and view the result: </p>
+                    <div class="container__example">
+                        <h3> Example</h3>
+                        <div class="example-code">
+                            <span class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>!DOCTYPE<span class="attributecolor"
+                                    style="color:red">
+                                    html</span><span class="tagcolor" style="color:mediumblue">&gt;</span></span><br>
+                            <span class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>html<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span><br><span class="tagnamecolor"
+                                style="color:brown"><span class="tagcolor" style="color:mediumblue">&lt;</span>head<span
+                                    class="tagcolor" style="color:mediumblue">&gt;</span></span><br><span
+                                class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>title<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span>Page Title<span class="tagnamecolor"
+                                style="color:brown"><span class="tagcolor" style="color:mediumblue">&lt;</span>/title<span
+                                    class="tagcolor" style="color:mediumblue">&gt;</span></span><br>
+                            <span class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>/head<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span><br><span class="tagnamecolor"
+                                style="color:brown"><span class="tagcolor" style="color:mediumblue">&lt;</span>body<span
+                                    class="tagcolor" style="color:mediumblue">&gt;</span></span><br><br><span
+                                class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>h1<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span>This is a Heading<span class="tagnamecolor"
+                                style="color:brown"><span class="tagcolor" style="color:mediumblue">&lt;</span>/h1<span
+                                    class="tagcolor" style="color:mediumblue">&gt;</span></span><br><span
+                                class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>p<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span>This is a paragraph.<span
+                                class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>/p<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span><br><br>
+                            <span class="tagnamecolor" style="color:brown"><span class="tagcolor"
+                                    style="color:mediumblue">&lt;</span>/body<span class="tagcolor"
+                                    style="color:mediumblue">&gt;</span></span><br><span class="tagnamecolor"
+                                style="color:brown"><span class="tagcolor" style="color:mediumblue">&lt;</span>/html<span
+                                    class="tagcolor" style="color:mediumblue">&gt;</span></span>
+                        </div>
+                        <button class="button__button-primary"> Try it Yourself >> </button>
+                    </div>
+                    <strong> Click on the "Try it Yourself" button to see how it works. </strong>
+                    <hr>
+                    <!-- Example -->
+                    <h2> HTML Example </h2>
+                    <p class="text__body--medium"> In this HTML tutorial, you will find more than 200 examples. With our online "Try it Yourself" editor, you can edit and test each example yourself! </p>
+                    <button class="button__button-primary"> Go to HTML Examples! </button>
+                    <hr>
+                    <!-- Google ads -->
+                    <div class="container__google-ads">
+                        <div class="ads__container">
+                            <div class="ads__content">
+                                <h4>Here is ads subtitle</h4>
+                                <p class="text__body--medium">Here is ads detail</p>
+                            </div>
+                            <button class="ads__button"> View more </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Exercises -->
+                    <h2> HTML Exercises </h2>
+                    <p class="text__body--medium"> This HTML tutorial also contains nearly 100 HTML exercises. </p>
+                    <div class="container__exercises">
+                        <h2> Test Yourself With Exercises </h2>
+                        <div class="exercise__detail">
+                            <h2> Exercise: </h2>
+                            <p class="text__body--medium"> Add a "tooltip" to the paragraph below with the text "About W3Schools". </p>
+                            <div class="exercise__description">
+                                &lt;p <input name="ex1" maxlength="5" style="width: 54px;">="About W3Schools"&gt;W3Schools is a web developer's site.&lt;/p&gt;
+                            </div>
+                            <button class="button__button-primary"> Submit answer </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- HTML Quiz Test -->
+                    <h2> HTML Quiz Test </h2>
+                    <p class="text__body--medium"> Test your HTML skills with our HTML Quiz! </p>
+                    <button class="button__button-primary"> Try it Yourself >> </button>
+                    <hr>
+                    <h2> My Learning </h2>
+                    <p class="text__body--medium"> Track your progress with the free "My Learning" program here at W3Schools. </p>
+                    <p class="text__body--medium"> Log in to your account, and start earning points! </p>
+                    <p class="text__body--medium"> This is an optional feature. You can study at W3Schools without using My Learning. </p>
+                    <img src="https://www.w3schools.com/images/mylearning.webp" alt="My Learning Image">
+                    <hr>
+                    <h2> HTML References </h2>
+                    <p class="text__body--medium"> At W3Schools you will find complete references about HTML elements, attributes, events, color names, entities, character-sets, URL encoding, language codes, HTTP messages, browser support, and more: </p>
+                    <div class="references__container">
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > HTML Elements </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Browser Support </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Attributes </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Global Attributes </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Event Attributes </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Color Names </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Canvas </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Audio/Video DOM </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Character Sets </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > URL Encoding </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Language Codes </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Country Codes </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > HTTP Messages </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Px to Em Converter </a>
+                        </div>
+                        <div class="references__link">
+                            <a href="" class="references-link__link-item--xlarge" > Keyboard Shortcuts </a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- Right side -->
+                <div class="section__right-side"> ADVERTISEMENT </div>
+            </div>
+            <footer>
+                <!-- footer top -->
+                <div class="container__footer-top">
+                    <img src="https://www.w3schools.com/excel/img_excel_w3_logo.png"
+                    class="footer__logo" alt="header logo">
+                    <div>
+                        <button class="footer__button"> Spaces </button>
+                        <button class="footer__button"> Upgrade </button>
+                        <button class="footer__button"> Ad-Free </button>
+                        <button class="footer__button"> Newsletter </button>
+                        <button class="footer__button"> Get certified </button>
+                        <button class="footer__button"> Contact us </button>
+                    </div>
+                </div>
+                <!-- footer middle -->
+                <div class="container__footer-middle">
+                    <div class="footer-link">
+                        <h3 class="link-wrapper__title"> Top tutorials </h3>
+                        <div class="link-wrapper__item">
+                            <a href="" class="footer-link__item"> HTML Tutorial </a>
+                            <a href="" class="footer-link__item"> CSS Tutorial </a>
+                            <a href="" class="footer-link__item"> JavaScript Tutorial </a>
+                            <a href="" class="footer-link__item"> How To Tutorial </a>
+                            <a href="" class="footer-link__item"> SQL Tutorial </a>
+                            <a href="" class="footer-link__item"> Python Tutorial </a>
+                            <a href="" class="footer-link__item"> W3.CSS Tutorial </a>
+                            <a href="" class="footer-link__item"> Bootstrap Tutorial </a>
+                            <a href="" class="footer-link__item"> PHP Tutorial </a>
+                            <a href="" class="footer-link__item"> Java Tutorial </a>
+                            <a href="" class="footer-link__item"> C++ Tutorial </a>
+                            <a href="" class="footer-link__item"> jQuery Tutorial </a>
+                        </div>
+                    </div>
+                    <div class="footer-link">
+                        <h3 class="link-wrapper__title"> Top References </h3>
+                        <div class="link-wrapper__item">
+                            <a href="" class="footer-link__item"> HTML Reference </a>
+                            <a href="" class="footer-link__item"> CSS Reference </a>
+                            <a href="" class="footer-link__item"> JavaScript Reference </a>
+                            <a href="" class="footer-link__item"> SQL Reference </a>
+                            <a href="" class="footer-link__item"> Python Reference </a>
+                            <a href="" class="footer-link__item"> W3.CSS Reference </a>
+                            <a href="" class="footer-link__item"> Bootstrap Reference </a>
+                            <a href="" class="footer-link__item"> PHP Reference </a>
+                            <a href="" class="footer-link__item"> HTML Colors </a>
+                            <a href="" class="footer-link__item"> Java Reference </a>
+                            <a href="" class="footer-link__item"> Angular Reference </a>
+                            <a href="" class="footer-link__item"> jQuery Reference </a>
+                        </div>
+                    </div>
+                    <div class="footer-link">
+                        <h3 class="link-wrapper__title"> Top Examples </h3>
+                        <div class="link-wrapper__item">
+                            <a href="" class="footer-link__item"> HTML Examples </a>
+                            <a href="" class="footer-link__item"> CSS Examples </a>
+                            <a href="" class="footer-link__item"> JavaScript Examples </a>
+                            <a href="" class="footer-link__item"> How To Examples </a>
+                            <a href="" class="footer-link__item"> SQL Examples </a>
+                            <a href="" class="footer-link__item"> Python Examples </a>
+                            <a href="" class="footer-link__item"> W3.CSS Examples </a>
+                            <a href="" class="footer-link__item"> Bootstrap Examples </a>
+                            <a href="" class="footer-link__item"> PHP Examples </a>
+                            <a href="" class="footer-link__item"> Java Examples </a>
+                            <a href="" class="footer-link__item"> XML Examples </a>
+                            <a href="" class="footer-link__item"> jQuery Examples </a>
+                        </div>
+                    </div>
+                    <div class="footer-link">
+                        <h3 class="link-wrapper__title"> Top tutorials </h3>
+                        <div class="link-wrapper__item">
+                            <a href="" class="footer-link__item"> HTML Certificate </a>
+                            <a href="" class="footer-link__item"> CSS Certificate </a>
+                            <a href="" class="footer-link__item"> JavaScript Certificate </a>
+                            <a href="" class="footer-link__item"> Front End Certificate </a>
+                            <a href="" class="footer-link__item"> SQL Certificate </a>
+                            <a href="" class="footer-link__item"> Python Certificate </a>
+                            <a href="" class="footer-link__item"> PHP Certificate </a>
+                            <a href="" class="footer-link__item"> jQuery Certificate </a>
+                            <a href="" class="footer-link__item"> Java Certificate </a>
+                            <a href="" class="footer-link__item"> C++ Certificate </a>
+                            <a href="" class="footer-link__item"> C# Certificate </a>
+                            <a href="" class="footer-link__item"> XML Certificate </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer bottom -->
+                <div class="container__footer-bottom">
+                    <div class="footer-botton__social-icon">
+                    </div>
+                    <p class="text__body--medium"> W3Schools is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using W3Schools, you agree to have read and accepted our terms of use, cookie and privacy policy. </p>
+                </div>
+            </footer>
+        </section>
+    </div>
+</body>
+</html>
