@@ -10,6 +10,8 @@ function deleteUsers(req, res) {
     res.end('Delete User Successfully');
 };
 
+var login = async()
+
 module.exports = {
     getUsers,
     addUsers,

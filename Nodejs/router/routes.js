@@ -1,5 +1,8 @@
 module.exports = {
     user: {
-        value: '/users'
-    }
+        value: '/users',
+        userLogin: {
+            value: '/user/login'
+        }
+    },
 };

@@ -16,6 +16,4 @@ var routerMethods = {
     }
 };
 
-module.exports = {
-    routerMethods,
-};
+module.exports = routerMethods;

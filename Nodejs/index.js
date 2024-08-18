@@ -1,5 +1,5 @@
+const router = require('./router/index.js')
 const createServer = require('http').createServer;
-const router = require('./router')
 
 const hostname = '127.0.0.1';
 const port = 3000;

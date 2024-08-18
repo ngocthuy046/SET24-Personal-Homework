@@ -1,9 +1,11 @@
+var routerMethods = require('../methods')
 var routes = require('../routes')
+
 const {
     getUsers,
     addUsers,
     deleteUsers
-} = require('../../controller/users');
+} = require('../../controller/users/index');
 
 var userRouter = {
     run(req, res) {
@@ -13,6 +15,4 @@ var userRouter = {
     },
 };
 
-module.exports = {
-    userRouter,
-};
+module.exports = userRouter;
