@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/pages/style.css">
+</head>
+
+<body>
+    <div id="register-form" class="register-container">
+        <h2>Register</h2>
+        <form action="/frontend/pages/login.html" method="GET">
+            <label for="registration-name">Name</label>
+            <input type="text" id="registration-name" name="user-name" required>
+
+            <label for="registration-email">Email</label>
+            <input type="email" id="registration-email" name="email" required>
+
+            <label for="registration-password">Password</label>
+            <input type="password" id="registration-password" name="password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <button id="registration-button" type="submit"> Submit </button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="./login.html">Login here</a>
+        </div>
+    </div>
+    <script src="../../backend/userController/index.js"></script>
+</body>
+
+</html>

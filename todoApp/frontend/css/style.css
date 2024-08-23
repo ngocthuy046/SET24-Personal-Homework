@@ -1,0 +1,189 @@
+/* .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-icon {
+    width: 120px;
+    height: 120px;
+}
+
+body {
+    margin: 60px;
+    font-family: sans-serif;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 16px;
+}
+
+h2 {
+    margin-bottom: -12px;
+}
+
+ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: -44px;
+}
+
+
+span {
+    margin-right: auto;
+}
+
+.check-box {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+.task__input-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    height: 32px;
+    gap: 4px;
+}
+
+#task-name {
+    display: block;
+    width: 100%;
+    margin-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+button {
+    background-color: rgb(7, 125, 221);
+    color: #fff;
+    border-color: transparent;
+}
+
+#filter {
+    font-size: small;
+    padding: 4px;
+} */
+
+/* General Body Styles */
+body {
+    margin: 40px auto;
+    font-family: sans-serif;
+    max-width: 400px;
+    padding: 16px;
+    background-color: #f4f4f9;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-icon {
+    width: 120px;
+    height: 120px;
+}
+
+.header h2 {
+    margin-bottom: -12px;
+    font-size: 24px;
+}
+
+/* Task Input Container */
+.task__input-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    height: 32px;
+    gap: 4px;
+}
+
+#task-name {
+    flex: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: rgb(7, 125, 221);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: rgb(5, 105, 183);
+}
+
+/* Todo List Styles */
+ul#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul#todo-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+ul#todo-list li.done {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.check-box {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+span {
+    flex: 1;
+}
+
+/* Filter Container */
+.filter-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+#filter {
+    font-size: small;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Button Styles for Edit and Delete in List Items */
+ul#todo-list .edit,
+ul#todo-list .delete {
+    background-color: rgb(7, 125, 221);
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    margin-left: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+ul#todo-list .delete {
+    background-color: #dc3545;
+}
