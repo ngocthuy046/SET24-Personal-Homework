@@ -59,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function toggleTask(index) {
         const selectedTodo = todos[index];
+        todos.splice(index, 1);
         selectedTodo.done = !selectedTodo.done;
+        todos.push(selectedTodo);
         saveTodosToLocalStorage();
         renderTodoList();
     }
@@ -85,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <input type="checkbox" class="check-box" onclick="toggleTask(${index})" ${todo.done ? "checked" : ""}>
                 <span class="taskName-${index}">${todo.name}</span>
                 <div>
-                    <button class="edit" onclick="editTask(${index})">Edit</button>
-                    <button class="delete" onclick="deleteTask(${index})">Delete</button>
+                    <button type="edit" class="edit" onclick="editTask(${index})">Edit</button>
+                    <button type="delete" class="delete" onclick="deleteTask(${index})">Delete</button>
                 </div>
             `;
             todoList.appendChild(li);

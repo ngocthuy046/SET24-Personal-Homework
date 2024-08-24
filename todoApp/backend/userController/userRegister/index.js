@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const registrationForm = document.getElementById('register-form');
+    const registrationForm = document.querySelector('#register-form form');
     const registrationButton = document.getElementById('registration-button');
 
     registrationButton.addEventListener('click', () => {
@@ -25,39 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 users.push({ id: userId, name, email, password });
                 localStorage.setItem('users', JSON.stringify(users));
                 alert('User registed successfull')
+                registrationForm.setAttribute('action', '/frontend/pages/login.html')
             }
         } else {
             alert('Please fill in all fields.')
         }
+        
     })
+
+    
+
     function generateUserId() {
         return 'user-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
     }
-})
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const loginForm = document.getElementById('login-form');
-    const loginButton = document.getElementById('login-button');
-
-    loginButton.addEventListener('click', () => {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-
-        if (email && password) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            console.log('Users in LocalStorage:', users);
-
-            const user = users.find(user => user.email === email && user.password === password);
-
-            if (user) {
-                alert('Login successful!');
-                loginForm.reset();
-            } else {
-                alert('Invalid email or password!');
-            }
-        } else {
-            alert('Please fill in all fields.');
-        }
-    });
 })
