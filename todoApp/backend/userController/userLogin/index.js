@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('#login-form form');
     const loginButton = document.getElementById('login-button');
 
-    loginButton.addEventListener('click', () => {
+    loginButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
 
@@ -14,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const user = users.find(user => user.email === email && user.password === password);
 
             if (user) {
+                localStorage.setItem('currentUserId', user.id);
+
                 alert('Login successful!');
-                loginForm.setAttribute('action', '/frontend/index.html')
+                window.location.href = '/frontend/index.html'
             } else {
                 alert('Invalid email or password!');
             }

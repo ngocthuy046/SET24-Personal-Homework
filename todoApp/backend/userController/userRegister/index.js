@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const registrationForm = document.querySelector('#register-form form');
     const registrationButton = document.getElementById('registration-button');
 
-    registrationButton.addEventListener('click', () => {
+    registrationButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
         const name = document.getElementById('registration-name').value;
         const email = document.getElementById('registration-email').value;
         const password = document.getElementById('registration-password').value;
@@ -25,15 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 users.push({ id: userId, name, email, password });
                 localStorage.setItem('users', JSON.stringify(users));
                 alert('User registed successfull')
-                registrationForm.setAttribute('action', '/frontend/pages/login.html')
+                window.location.href = '/frontend/pages/login.html';
             }
         } else {
             alert('Please fill in all fields.')
         }
         
     })
-
-    
 
     function generateUserId() {
         return 'user-' + Date.now() + '-' + Math.floor(Math.random() * 1000);

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     let todos = loadTodosFromLocalStorage() || [];
+    const currentUserId = getCurrentUserId();
 
     const taskNameInput = document.getElementById("task-name");
     const createButton = document.getElementById("create-task");
@@ -7,9 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const todoList = document.getElementById("todo-list");
 
     const filter = document.getElementById("filter");
-    const filterValueIsAll = 'all';
-    const filterValueIsDone = 'done';
-    const filterValueIsUndone = 'undone';
+    const todofilterValue = Object.freeze({
+        ALL: 'all',
+        DONE: 'done',
+        UNDONE: 'undone'
+    });
 
     createButton.addEventListener("click", addTask);
     cancelButton.addEventListener("click", cancelAllChange);
@@ -18,20 +21,25 @@ document.addEventListener("DOMContentLoaded", function () {
     function addTask() {
         const taskName = taskNameInput.value.trim();
         if (taskName === '') {
-            return 'Please input a task';
-        } else {
-            todos.unshift({
-                name: taskName,
-                done: false
-            });
-            saveTodosToLocalStorage();
+            alert('Please input a task');
+            return;
         }
+        if (!currentUserId) {
+            alert('No user logged in');
+            return;
+        }
+        todos.unshift({
+            name: taskName,
+            done: false,
+            userId: currentUserId
+        });
+        saveTodosToLocalStorage();
         taskNameInput.value = "";
         renderTodoList();
     }
 
     function cancelAllChange() {
-        taskNameInput.value = ""; // Reset button text if it was changed
+        taskNameInput.value = "";
     }
 
     function editTask(index) {
@@ -68,17 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getFilteredTodo() {
         const filterValue = filter.value;
-        if (filterValue === filterValueIsAll) {
-            return todos;
-        } else if (filterValue === filterValueIsDone) {
-            return todos.filter(todo => todo.done);
-        } else {
-            return todos.filter(todo => !todo.done);
+        let filteredTodos = todos.filter(todo => todo.userId === currentUserId);
+        
+        if (filterValue === todofilterValue.DONE) {
+            filteredTodos = filteredTodos.filter(todo => todo.done);
+        } else if (filterValue === todofilterValue.UNDONE) {
+            filteredTodos = filteredTodos.filter(todo => !todo.done);
         }
+        
+        return filteredTodos;
     }
 
     function renderTodoList() {
-        const filterValue = filter.value;
         todoList.innerHTML = "";
         getFilteredTodo().forEach((todo, index) => {
             const li = document.createElement("li");
@@ -101,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadTodosFromLocalStorage() {
         return JSON.parse(localStorage.getItem('todos'));
+    }
+
+    function getCurrentUserId() {
+        return localStorage.getItem('currentUserId');
     }
 
     window.editTask = editTask;
