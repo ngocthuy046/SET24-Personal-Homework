@@ -1,0 +1,1 @@
+//Các hàm tiện ích để xử lý phản hồi (response)

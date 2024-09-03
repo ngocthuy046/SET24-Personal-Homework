@@ -1,3 +1,4 @@
+//Tệp chính khởi tạo ứng dụng và cấu hình server
 const router = require('./router/index.js')
 const createServer = require('http').createServer;
 

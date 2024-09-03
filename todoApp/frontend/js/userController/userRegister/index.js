@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 users.push({ id: userId, name, email, password });
                 localStorage.setItem('users', JSON.stringify(users));
                 alert('User registed successfull')
-                window.location.href = '/frontend/pages/login.html';
+                window.location.href = '/todoApp/frontend/pages/login.html';
             }
         } else {
             alert('Please fill in all fields.')

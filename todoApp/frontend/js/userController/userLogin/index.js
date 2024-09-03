@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('currentUserId', user.id);
 
                 alert('Login successful!');
-                window.location.href = '/frontend/index.html'
+                window.location.href = '/todoApp/frontend/index.html'
             } else {
                 alert('Invalid email or password!');
             }

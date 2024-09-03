@@ -1,3 +1,4 @@
+//Định nghĩa các route liên quan đến đăng ký và đăng nhập
 var routerMethods = require('../methods')
 var routes = require('../routes')
 

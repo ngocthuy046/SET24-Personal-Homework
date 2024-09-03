@@ -1,3 +1,4 @@
+//user controller: Add, Delete, Get
 function getUsers(req, res) {
     res.end('Get User Successfully');
 };
