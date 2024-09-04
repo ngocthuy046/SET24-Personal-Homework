@@ -1,15 +1,24 @@
 //Cấu hình kết nối MongoDB
 const { MongoClient } = require('mongodb');
-const url = process.env.MONGO_URL || 'mongodb://localhost:27017';
-const client = new MongoClient(url, { useUnifiedTopology: true });
+require('dotenv').config();
+const url = process.env.MONGO_URL
+const client = new MongoClient(url);
 
-let db = null;
+let database = null;
 
 async function connectToDatabase() {
-    if (db) return db;
-    await client.connect();
-    db = client.db('todoapp');
-    return db;
+    if (database) return database;
+    try {
+        await client.connect();
+        console.log('Connected successfully to server');
+        const databaseName = process.env.MONGO_DATABASE
+        database = client.db(databaseName);
+
+        return database;
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+        throw error;
+    }
 }
 
 module.exports = { connectToDatabase };
