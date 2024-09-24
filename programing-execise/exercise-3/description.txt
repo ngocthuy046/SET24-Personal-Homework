@@ -1,0 +1,6 @@
+3/ Enter a positive integer n:
+a) Check if n is a prime number.
+b) Check if n is a perfect number.
+c) Check if n is a perfect square.
+d) Print all prime numbers less than or equal to n.
+
