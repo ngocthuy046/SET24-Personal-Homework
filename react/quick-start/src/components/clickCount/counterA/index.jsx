@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { CounterContext } from '../../CounterContext';
-import CounterB from '../counterB';
+import React, { useContext } from 'react';
+import { CounterContext } from '../CounterContext';
+import CounterB from '../counterB'
 
 export default function CounterA() {
     const { counterA, setCounterA } = useContext(CounterContext);
