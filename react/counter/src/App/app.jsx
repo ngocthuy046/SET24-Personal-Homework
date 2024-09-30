@@ -1,12 +1,18 @@
 import CounterA from "../components/counterA";
-import ContextProvider from "../CounterContext";
+import store from "../store.js";
+// import ContextProvider from "../CounterContext";
+
+import { Provider } from "react-redux";
 
 const App = () => {
     return (
         <div>
-            <ContextProvider>
+            <Provider store={store}> 
                 <CounterA />
-            </ContextProvider>
+            </Provider>
+            {/* <ContextProvider>
+                <CounterA />
+            </ContextProvider> */}
         </div>
     );
 }
