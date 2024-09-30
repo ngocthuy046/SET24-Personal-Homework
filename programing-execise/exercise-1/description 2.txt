@@ -1,0 +1,6 @@
+1/ Enter a positive integer n (n < 1000):
+a) Calculate and print the sum from 1 to n.
+b) Calculate the sum of the divisors of n.
+c) Calculate the sum of the digits of n.
+d) Find the largest digit of n.
+

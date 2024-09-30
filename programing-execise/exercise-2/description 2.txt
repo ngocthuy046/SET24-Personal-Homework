@@ -1,0 +1,5 @@
+2/ Enter a sequence of positive integers n (n > 100,000), e.g., 123123123:
+a) Find and print the largest number.
+b) Find and print the second largest number.
+c) Find and print the smallest number.
+d) Find and print all prime numbers in the sequence.
