@@ -1,0 +1,5 @@
+12/ Enter a two-dimensional array of integers:
+a) Find the largest number in the array.
+b) Find the smallest number in the array.
+c) Calculate the sum of the elements in row or column k.
+d) Find and print all prime numbers in the array.
