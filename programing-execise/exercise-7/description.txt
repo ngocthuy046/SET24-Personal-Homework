@@ -1,0 +1,1 @@
+7/ Enter a positive integer n, print the first n Fibonacci numbers.
