@@ -1,0 +1,4 @@
+11/ Enter a one-dimensional array of integers n:
+a) Find the position of the largest number.
+b) Find the position of the smallest number.
+c) Find and print the sum of all elements in the array.

@@ -1,0 +1,3 @@
+9/ Enter a string of characters or a sequence of numbers:
+a) Find the longest increasing/decreasing subsequence.
+b) Sort the characters in ascending/descending order and print them.

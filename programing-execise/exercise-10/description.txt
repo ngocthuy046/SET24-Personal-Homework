@@ -1,0 +1,3 @@
+10/ Enter two positive integers a and b:
+a) Find the greatest common divisor.
+b) Find the least common multiple.
