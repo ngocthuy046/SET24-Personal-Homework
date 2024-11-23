@@ -1,0 +1,4 @@
+8/ Enter a string of characters:
+a) Count the number of vowels.
+b) Count the occurrences of a specific character.
+c) Find the most frequent character.

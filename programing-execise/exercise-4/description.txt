@@ -1,0 +1,5 @@
+4/ Enter a string of characters:
+a) Reverse the string.
+b) Remove the spaces in the string.
+c) Check if the string is a palindrome.
+d) Find the longest palindromic substring.

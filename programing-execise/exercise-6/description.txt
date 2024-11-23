@@ -1,0 +1,3 @@
+6/ Enter a positive integer n:
+a) Calculate and print the factorial of n.
+b) Calculate and print the sum of the digits of n.

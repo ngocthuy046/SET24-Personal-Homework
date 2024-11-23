@@ -1,0 +1,1 @@
+5/ Enter an array of integers, sort it, and print it.
