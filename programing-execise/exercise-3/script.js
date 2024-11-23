@@ -25,9 +25,8 @@ function isPerfectNumber(number) {
   }
   if (sumOfDivisor === number) {
     return true
-  } else {
-    return false
   }
+  return false
 }
 
 // (3c) Check if n is a perfect square.

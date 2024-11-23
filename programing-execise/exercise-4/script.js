@@ -34,15 +34,34 @@ function checkPalindrome(inputString) {
 // (4d) Find the longest palindromic substring.
 function findLongestPalindrome(inputString) {
     let longestPalindrome = "";
-    let reversedString = reverseString(inputString);
 
-    for (let i = 0; i < Math.floor(inputString.length/2); i++) {
-        if (inputString[i] === reversedString[i]) {
-            longestPalindrome += inputString[i];
+    function expandAroundCenter(left, right) {
+        while (
+            left >= 0 &&
+            right < inputString.length &&
+            inputString[left].toLowerCase() === inputString[right].toLowerCase()
+        ) {
+            left--;
+            right++;
+        }
+        return inputString.slice(left + 1, right);
+    }
+
+    for (let i = 0; i < inputString.length; i++) {
+        let oddPalindrome = expandAroundCenter(i, i);
+        if (oddPalindrome.length > longestPalindrome.length) {
+            longestPalindrome = oddPalindrome;
+        }
+
+        let evenPalindrome = expandAroundCenter(i, i + 1);
+        if (evenPalindrome.length > longestPalindrome.length) {
+            longestPalindrome = evenPalindrome;
         }
     }
-    return longestPalindrome
+
+    return longestPalindrome;
 }
+
 
 console.log(`
 (4a) -----------------
