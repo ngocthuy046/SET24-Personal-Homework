@@ -1,6 +1,6 @@
 //flowchartURL: https://www.figma.com/proto/h3iuRK1PwTOi5rfkAn9raV/SET-2024?page-id=697%3A2&node-id=855-4048&node-type=frame&viewport=1434%2C44%2C0.14&t=vUtFrNYA9C5PuIVp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=855%3A4048&show-proto-sidebar=1
 
-let number = 7657499;
+let number = 989;
 // (2a) Find and print the largest number.
 function findLargestDigitOfNumber(number) {
     let largestNumber = 0;
@@ -15,28 +15,28 @@ function findLargestDigitOfNumber(number) {
 
 // (2b) Find and print the second largest number.
 function findSecondLargestDigitOfNumber(number) {
-    let secondLargestNumber = 0;
-    let largestNumber = number % 10;
-    number = Math.floor(number / 10);
+    let largestNumber = null;
+    let secondLargestNumber = null;
+
     while (number > 0) {
         let current = number % 10;
-        if (current === largestNumber) {
-            largestNumber = current;
-            secondLargestNumber = 0;
-        }
-        if (current > largestNumber) {
+
+        if (largestNumber === null || current > largestNumber) {
             secondLargestNumber = largestNumber;
             largestNumber = current;
         } 
-        if (current < largestNumber) {
-            if (current > secondLargestNumber) {
-                secondLargestNumber = current;
-            }
+
+        else if (current !== largestNumber && 
+                 (secondLargestNumber === null || current > secondLargestNumber)) {
+            secondLargestNumber = current;
         }
-        
+
         number = Math.floor(number / 10);
     }
-    return secondLargestNumber
+
+    return secondLargestNumber === null 
+        ? "No second largest digit exists" 
+        : secondLargestNumber;
 }
 
 // (2c) Find and print the smallest number.
