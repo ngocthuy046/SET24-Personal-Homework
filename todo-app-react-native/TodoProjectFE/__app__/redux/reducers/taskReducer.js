@@ -1,4 +1,3 @@
-//TODO: 4- taskReducer
 import {
     FETCH_TASKS_REQUEST,
     FETCH_TASKS_SUCCESS,
@@ -9,37 +8,37 @@ import {
     DELETE_TASK_REQUEST,
     DELETE_TASK_SUCCESS,
     DELETE_TASK_FAILURE
-} from '../actions/task.actions'
+} from '../actions/task.actions';
 
 const initialState = {
-    tasks: [],
+    tasks: [],  // Consistently use 'tasks' here
     loading: false,
-    error: null
-}
+    error: null,
+};
 
 const taskReducer = (state = initialState, action) => {
     switch (action.type) {
-        //Fetch Tasks
+        // Fetch Tasks
         case FETCH_TASKS_REQUEST:
             return { ...state, loading: true, error: null };
 
         case FETCH_TASKS_SUCCESS:
-            return { ...state, loading: false, list: action.payload };
+            return { ...state, loading: false, tasks: action.payload }; // Use 'tasks' here
 
         case FETCH_TASKS_FAILURE:
             return { ...state, loading: false, error: action.payload };
 
-        //Add Task
+        // Add Task
         case ADD_TASK_REQUEST:
             return { ...state, loading: true, error: null };
 
         case ADD_TASK_SUCCESS:
-            return { ...state, loading: false, list: [...state.tasks, action.payload] };
+            return { ...state, loading: false, tasks: [...state.tasks, action.payload] }; // Use 'tasks' here
 
         case ADD_TASK_FAILURE:
             return { ...state, loading: false, error: action.payload };
 
-        //Delete Task
+        // Delete Task
         case DELETE_TASK_REQUEST:
             return { ...state, loading: true, error: null };
 
@@ -47,12 +46,15 @@ const taskReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                tasks: state.tasks.filter((task) => task.id !== action.payload),
+                tasks: state.tasks.filter((task) => task.id !== action.payload), // Use 'tasks' here
             };
 
         case DELETE_TASK_FAILURE:
             return { ...state, loading: false, error: action.payload };
-    }
-}
 
-export default taskReducer
+        default:
+            return state;  // Don't forget to return the state for other cases
+    }
+};
+
+export default taskReducer;
