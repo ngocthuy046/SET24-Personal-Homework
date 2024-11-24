@@ -10,13 +10,10 @@ const AddTaskForm = ({ onAddTask }) => {
             setTitle('');
         }
     };
-
     return (
         <View>
             <Text style={styles.header}>Todo App</Text>
-
             <View style={styles.container}>
-
                 <TextInput
                     style={styles.input}
                     placeholder="Enter task title"
@@ -40,7 +37,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         borderColor: '#ddd',
-        borderRadius: 5,
+        borderRadius: 2,
         padding: 8,
         marginRight: 10,
     },

@@ -1,14 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-//TODO: 12- component Task Item
-const TaskItem = ({ task, onDelete }) => {
+// Component TaskItem
+const TaskItem = ({ task, onDelete, onUpdate }) => {
+  if (!onDelete || !onUpdate) {
+    console.error("onDelete or onUpdate is not a function");
+    return null; // Tránh lỗi khi các props không tồn tại
+  }
+
   return (
     <View style={styles.taskItem}>
-      <Text style={styles.taskTitle}>{task.title}</Text>
+      <TouchableOpacity
+        style={[styles.checkBox, task.completed && styles.completed]}
+        onPress={() => onUpdate({ ...task, completed: !task.completed })}
+      >
+        {task.completed && <Text style={styles.checkMark}>✔</Text>}
+      </TouchableOpacity>
+      <Text style={[styles.taskTitle, task.completed && styles.completedTask]}>
+        {task.title}
+      </Text>
       <View style={styles.actions}>
         <TouchableOpacity onPress={() => onDelete(task.id)} style={styles.deleteButton}>
-          <Text style={styles.buttonText}>Delete</Text>
+          <Text style={styles.buttonText}> ✗ </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -18,7 +31,6 @@ const TaskItem = ({ task, onDelete }) => {
 const styles = StyleSheet.create({
   taskItem: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#f9f9f9',
@@ -26,16 +38,44 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
   },
   taskTitle: {
+    flex: 1,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  completedTask: {
+    textDecorationLine: 'line-through',
+    color: '#888',
+  },
+  checkBox: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    borderWidth: 2,
+    marginRight: 10,
+    paddingLeft:4,
+    backgroundColor: 'transparent',
+  },
+  
+  completed: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    borderWidth: 2,
+    marginRight: 10,
+    backgroundColor: '#4caf50',
+  },
+  checkMark: {
+    color: '#fff',
+    fontSize: 10,
   },
   actions: {
     flexDirection: 'row',
   },
   deleteButton: {
-    backgroundColor: '#F44336',
+    backgroundColor: '#D44A',
+    alignItems: 'center',
     padding: 5,
-    borderRadius: 5,
+    borderRadius: 2,
   },
   buttonText: {
     color: '#fff',

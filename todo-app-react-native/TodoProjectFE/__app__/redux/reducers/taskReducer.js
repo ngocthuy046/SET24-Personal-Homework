@@ -7,7 +7,10 @@ import {
     ADD_TASK_FAILURE,
     DELETE_TASK_REQUEST,
     DELETE_TASK_SUCCESS,
-    DELETE_TASK_FAILURE
+    DELETE_TASK_FAILURE,
+    UPDATE_TASK_REQUEST,
+    UPDATE_TASK_SUCCESS,
+    UPDATE_TASK_FAILURE,
 } from '../actions/task.actions';
 
 const initialState = {
@@ -52,8 +55,30 @@ const taskReducer = (state = initialState, action) => {
         case DELETE_TASK_FAILURE:
             return { ...state, loading: false, error: action.payload };
 
+        //Updated Task
+        case UPDATE_TASK_REQUEST:
+            return {
+                ...state,
+                tasks: state.tasks.map(task =>
+                    task.id === action.payload.id
+                        ? { ...task, ...action.payload.updatedTask }
+                        : task
+                ),
+            };
+
+        case UPDATE_TASK_SUCCESS:
+            return {
+                ...state,
+                tasks: state.tasks.map((task) =>
+                    task.id === action.payload.id ? action.payload : task
+                ),
+            };
+
+        case UPDATE_TASK_FAILURE:
+            return { ...state, loading: false, error: action.payload };
+
         default:
-            return state;  // Don't forget to return the state for other cases
+            return state;
     }
 };
 

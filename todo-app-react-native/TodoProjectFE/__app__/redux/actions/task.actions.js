@@ -10,6 +10,10 @@ export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
 export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS';
 export const DELETE_TASK_FAILURE = 'DELETE_TASK_FAILURE';
 
+export const UPDATE_TASK_REQUEST = 'UPDATE_TASK_REQUEST';
+export const UPDATE_TASK_SUCCESS = 'UPDATE_TASK_SUCCESS';
+export const UPDATE_TASK_FAILURE = 'UPDATE_TASK_FAILURE';
+
 //TODO: 1- Fetch Tasks Action
 export const fetchTasksRequest = () => ({
     type: FETCH_TASKS_REQUEST,
@@ -56,3 +60,19 @@ export const deleteTaskFailure = (error) => ({
     type: DELETE_TASK_FAILURE,
     payload: error,
 });
+
+// Update Task Actions
+export const updateTaskRequest = (task) => ({
+    type: UPDATE_TASK_REQUEST,
+    payload: task,
+  });
+  
+  export const updateTaskSuccess = (task) => ({
+    type: UPDATE_TASK_SUCCESS,
+    payload: task,
+  });
+  
+  export const updateTaskFailure = (error) => ({
+    type: UPDATE_TASK_FAILURE,
+    payload: error,
+  });

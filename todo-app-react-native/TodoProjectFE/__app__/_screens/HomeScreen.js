@@ -14,42 +14,59 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector((state) => state.tasks);
 
+  // Fetch tasks on mount
   useEffect(() => {
     dispatch(fetchTasksRequest());
   }, [dispatch]);
 
+  // Handlers
   const handleAddTask = (task) => {
-    dispatch(addTaskRequest(task));
+    if (task && task.title) {
+      dispatch(addTaskRequest(task));
+    }
   };
 
   const handleDeleteTask = (id) => {
-    dispatch(deleteTaskRequest(id));
+    if (id) {
+      dispatch(deleteTaskRequest(id));
+    }
   };
 
-  const handleUpdateTask = (id) => {
-    const updatedTask = { completed: true }; // Ví dụ: đánh dấu hoàn thành
-    dispatch(updateTaskRequest({ id, updatedTask }));
+  const handleUpdateTask = (task) => {
+    if (task && task.id) {
+      dispatch(updateTaskRequest(task)); 
+    }
   };
 
+  // Render loading or error state
   if (loading) {
-    return <View><Text>Loading...</Text></View>;
+    return (
+      <View style={styles.center}>
+        <Text>Loading...</Text>
+      </View>
+    );
   }
 
   if (error) {
-    return <View><Text>Error: {error}</Text></View>;
+    return (
+      <View style={styles.center}>
+        <Text>Error: {error}</Text>
+      </View>
+    );
   }
 
+  // Render the task list
   return (
     <View style={styles.container}>
       <AddTaskForm onAddTask={handleAddTask} />
       <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()}
+        data={tasks} // Ensure tasks is an array
+        keyExtractor={(item) => item.id?.toString() || Math.random().toString()} // Fallback for missing id
         renderItem={({ item }) => (
           <TaskItem
             task={item}
-            onDelete={handleDeleteTask}
-            onUpdate={handleUpdateTask}
+            onDelete={(id) => handleDeleteTask(id)}
+            onUpdate={(updatedTask) => handleUpdateTask(updatedTask)} // Truyền toàn bộ task
           />
         )}
       />
@@ -62,6 +79,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: '#fff',
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

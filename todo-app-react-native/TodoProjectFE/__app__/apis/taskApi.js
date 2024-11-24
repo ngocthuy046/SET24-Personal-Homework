@@ -16,6 +16,7 @@ export async function fetchTasksAPI() {
 export async function addTaskAPI(task) {
   try {
     const response = await axios.post(`${API_URL}/tasks`, task);
+
     return response.data;
   } catch (error) {
     console.error('Error adding task:', error.message);
@@ -34,6 +35,19 @@ export async function deleteTaskAPI(id) {
     throw error;
   }
 }
+
+// updateTaskAPI
+export async function updateTaskAPI(id, updatedTask) {
+  try {
+    const response = await axios.patch(`${API_URL}/tasks/${id}`, updatedTask);
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    console.error('Error updating task:', error.message);
+    throw error;
+  }
+}
+
 
 
 
