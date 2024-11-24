@@ -16,6 +16,9 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import store from './__app__/redux/store';
+import { Provider } from 'react-redux';
+import HomeScreen from './__app__/_screens/HomeScreen';
 
 import {
   Colors,
@@ -63,16 +66,15 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}>
-        <Section title="Todo App">
-          Manage your mission
-        </Section>
-      </View>
-    </SafeAreaView>
+    <Provider store={store}> {/* Cung cấp store cho toàn bộ ứng dụng */}
+      <SafeAreaView style={[styles.safeAreaView, backgroundStyle]}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <View style={[styles.mainView, { backgroundColor: isDarkMode ? Colors.black : Colors.white }]}>
+          {/* Hiển thị HomeScreen */}
+          <HomeScreen />
+        </View>
+      </SafeAreaView>
+    </Provider>
   );
 }
 
@@ -92,6 +94,12 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  safeAreaView: {
+    flex: 1,
+  },
+  mainView: {
+    flex: 1,
   },
 });
 
