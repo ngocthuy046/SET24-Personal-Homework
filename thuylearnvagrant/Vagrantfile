@@ -1,0 +1,63 @@
+Vagrant.configure("2") do |config|
+  # Use Ubuntu as the base image
+  config.vm.box = "bento/ubuntu-20.04"
+  
+  # Set up port forwarding
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Set up synced folder
+  config.vm.synced_folder "./", "/home/vagrant/myapp"
+
+  # Provision with a shell script
+  config.vm.provision "shell", inline: <<-SHELL
+    # Update system
+    apt-get update -y && apt-get upgrade -y
+    
+    # Install Docker
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    apt-get update -y && apt-get install -y docker.io
+    systemctl start docker
+    systemctl enable docker
+    
+    # Install Node.js
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+    apt-get install -y nodejs
+
+    # Install docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+    # Add vagrant user to docker group
+    groupadd docker || true
+    usermod -aG docker vagrant
+
+    # Verify installations
+    docker --version
+    node --version
+    
+    # Install Nginx
+    apt-get install -y nginx
+    systemctl enable nginx
+    systemctl start nginx
+    
+    # Configure Nginx to proxy requests to Node.js
+    echo 'server {
+        listen 80;
+        location / {
+            proxy_pass http://localhost:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }' > /etc/nginx/sites-available/default
+    systemctl restart nginx
+    
+    # Print completion message
+    echo "Provisioning complete! Docker, Node.js, and Nginx are ready."
+  SHELL
+end
