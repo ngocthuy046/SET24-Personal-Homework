@@ -11,6 +11,7 @@ import {
     deleteTaskFailure,
     updateTaskSuccess,
     updateTaskFailure,
+    fetchTasksRequest,
 } from '../actions/task.actions'
 
 // Worker Saga: Fetch Tasks
@@ -45,18 +46,12 @@ function* deleteTaskSaga(action) {
 
 function* updateTaskSaga(action) {
     try {
-        const task = action.payload;
-
-        if (!task || !task.id) {
-            throw new Error('Missing task or task ID in payload');
-        }
-
-        // Gửi API cập nhật task
-        const updatedResponse = yield call(updateTaskAPI, task.id, task);
-        console.log('API response:', updatedResponse);
-        yield put(updateTaskSuccess(updatedResponse)); // Dispatch action với task đã cập nhật
+        const data = action.payload;
+        const updatedTask = {completed: data.completed}
+        const updatedResponse = yield call(updateTaskAPI, data.id, updatedTask);
+        yield put(updateTaskSuccess(updatedResponse));
+        yield put(fetchTasksRequest())
     } catch (error) {
-        console.error('Error in updateTaskSaga:', error.message);
         yield put(updateTaskFailure(error.message));
     }
 }

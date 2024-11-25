@@ -29,7 +29,7 @@ const HomeScreen = () => {
   const handleDeleteTask = (id) => {
     if (id) {
       dispatch(deleteTaskRequest(id));
-    }
+      }
   };
 
   const handleUpdateTask = (task) => {
@@ -61,7 +61,7 @@ const HomeScreen = () => {
       <AddTaskForm onAddTask={handleAddTask} />
       <FlatList
         data={tasks} // Ensure tasks is an array
-        keyExtractor={(item) => item.id?.toString() || Math.random().toString()} // Fallback for missing id
+        keyExtractor={(item) => item.id?.toString() } // Fallback for missing id
         renderItem={({ item }) => (
           <TaskItem
             task={item}

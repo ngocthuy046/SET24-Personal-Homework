@@ -69,9 +69,11 @@ const taskReducer = (state = initialState, action) => {
         case UPDATE_TASK_SUCCESS:
             return {
                 ...state,
-                tasks: state.tasks.map((task) =>
-                    task.id === action.payload.id ? action.payload : task
-                ),
+                tasks: [...state.tasks, state.tasks.map((task) =>
+                    task.id === action.payload.id 
+                        ? { ...task, ...action.payload.completed }
+                        : task
+                )],
             };
 
         case UPDATE_TASK_FAILURE:

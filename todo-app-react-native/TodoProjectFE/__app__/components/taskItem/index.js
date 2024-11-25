@@ -12,7 +12,7 @@ const TaskItem = ({ task, onDelete, onUpdate }) => {
     <View style={styles.taskItem}>
       <TouchableOpacity
         style={[styles.checkBox, task.completed && styles.completed]}
-        onPress={() => onUpdate({ ...task, completed: !task.completed })}
+        onPress={() => onUpdate({ id: task.id, completed: !task.completed })}
       >
         {task.completed && <Text style={styles.checkMark}>✔</Text>}
       </TouchableOpacity>
