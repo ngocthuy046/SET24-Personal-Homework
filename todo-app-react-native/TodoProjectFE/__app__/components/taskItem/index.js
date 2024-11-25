@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 const TaskItem = ({ task, onDelete, onUpdate }) => {
   if (!onDelete || !onUpdate) {
     console.error("onDelete or onUpdate is not a function");
-    return null; // Tránh lỗi khi các props không tồn tại
+    return null; 
   }
 
   return (
