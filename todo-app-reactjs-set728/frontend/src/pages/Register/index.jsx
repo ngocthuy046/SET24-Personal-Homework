@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import axiosInstance from "../../_apis";
+import { registerUser } from "../../_apis/userApi";  // Import hàm đăng ký từ userApi
 import { useNavigate } from 'react-router-dom';
 import { LeftContent } from "../../components/LeftContent";
 
 function RegisterForm() {
 
-    const [name, setUserName] = useState('')
-    const [email, setUserEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const [name, setUserName] = useState('');
+    const [email, setUserEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const [error, setError] = useState('');
     const navigate = useNavigate(); // Hook để điều hướng
@@ -27,28 +27,24 @@ function RegisterForm() {
         }
 
         try {
-            // Gửi request đăng ký tới API
-            const response = await axiosInstance.post('/users/register', {
-                name,
-                email,
-                password,
-            });
+            // Gửi request đăng ký tới API thông qua userApi
+            const response = await registerUser(name, email, password);
 
             // Xử lý khi đăng ký thành công
             alert('Đăng ký thành công!');
-            console.log(response.data);
+            console.log(response);
             navigate('/login'); // Chuyển đến trang đăng nhập
         } catch (err) {
             // Xử lý lỗi khi đăng ký
             setError('Đăng ký thất bại, vui lòng thử lại!');
             console.error('Error during registration:', err);
         }
-
     }
+
     const handleLoginRedirect = () => {
         navigate('/login'); // Điều hướng tới trang đăng nhập
     }
-    
+
     return (
         <form className="form" onSubmit={handleRegister}>
             <div>
@@ -108,7 +104,7 @@ function RegisterForm() {
                 </div>
 
                 <div className="form-actions">
-                <div className="flex items-start mb-5">
+                    <div className="flex items-start mb-5">
                         <label htmlFor="register-page" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                             Already have an account?
                             <span

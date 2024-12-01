@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import axiosInstance from "../../_apis";  // Đảm bảo đường dẫn chính xác
+import { loginUser } from "../../_apis/userApi"; 
 import { useNavigate } from 'react-router-dom';
-import { LeftContent } from "../../components/LeftContent";  // Giả sử bạn có LeftContent trong dự án
+import { LeftContent } from "../../components/LeftContent"; 
 
 function LoginForm() {
     const [email, setUserEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook để điều hướng
+    const navigate = useNavigate(); 
 
     async function handleLogin(event) {
         event.preventDefault();
@@ -18,25 +18,21 @@ function LoginForm() {
         }
 
         try {
-            // Gửi request đăng nhập tới API
-            const response = await axiosInstance.post('/users/login', {
-                email,
-                password,
-            });
+            const response = await loginUser(email, password);
 
-            // Xử lý khi đăng nhập thành công
-            alert('Đăng nhập thành công!');
-            console.log('Login success:', response.data);
-            localStorage.setItem('token', response.data.token); // Lưu JWT token vào localStorage
-            navigate('/admin'); // Chuyển đến trang dashboard sau khi đăng nhập thành công
+            alert('Login successfull!');
+            console.log(response)
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('user', JSON.stringify({ name: response.username })); 
+            navigate('/admin'); 
         } catch (err) {
-            // Xử lý lỗi khi đăng nhập
             setError('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!');
             console.error('Error during login:', err);
         }
     }
+
     const handleRegisterRedirect = () => {
-        navigate('/register'); // Điều hướng tới trang đăng ký
+        navigate('/register'); 
     }
 
     return (

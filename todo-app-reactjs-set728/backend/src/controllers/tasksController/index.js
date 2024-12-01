@@ -1,16 +1,14 @@
 const Task = require('../../models/taskModel')
 
-// Lấy danh sách task của người dùng
 const getTasks = async (req, res) => {
     try {
-        const tasks = await Task.find({ userId: req.user._id }); // Lọc task theo userId
+        const tasks = await Task.find({ userId: req.user._id });
         res.status(200).json(tasks);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-// Tạo task mới
 const createTask = async (req, res) => {
     try {
         const { title } = req.body;
@@ -21,7 +19,7 @@ const createTask = async (req, res) => {
 
         const newTask = new Task({
             title,
-            userId: req.user._id // Gắn userId từ token
+            userId: req.user._id
         });
 
         await newTask.save();
@@ -31,7 +29,6 @@ const createTask = async (req, res) => {
     }
 };
 
-// Cập nhật trạng thái hoàn thành của task (toggle)
 const toggleTask = async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.params.id, userId: req.user._id });
@@ -48,7 +45,6 @@ const toggleTask = async (req, res) => {
     }
 };
 
-// Xóa task
 const deleteTask = async (req, res) => {
     try {
         const task = await Task.findOneAndDelete({ _id: req.params.id, userId: req.user._id });
@@ -64,7 +60,6 @@ const deleteTask = async (req, res) => {
 };
 
 
-// Cập nhật tiêu đề task
 const updateTaskTitle = async (req, res) => {
     try {
         const { title } = req.body;

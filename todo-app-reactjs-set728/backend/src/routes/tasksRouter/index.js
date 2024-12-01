@@ -10,11 +10,10 @@ const authenticateUser = require('../../middlewares/authMiddleware')
 
 const router = express.Router();
 
-// Định nghĩa các route và kết nối với controller
-router.get('/', authenticateUser, getTasks); // Lấy danh sách task
-router.post('/', authenticateUser, createTask); // Tạo task mới
-router.patch('/:id', authenticateUser, toggleTask); // Toggle trạng thái task
-router.delete('/:id', authenticateUser, deleteTask); // Xóa task
-router.put('/:id', authenticateUser, updateTaskTitle); // Chỉnh sửa tiêu đề task
+router.get('/', authenticateUser, getTasks); 
+router.post('/', authenticateUser, createTask); 
+router.patch('/:id', authenticateUser, toggleTask); 
+router.delete('/:id', authenticateUser, deleteTask); 
+router.put('/:id', authenticateUser, updateTaskTitle); 
 
 module.exports = router;
