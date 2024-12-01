@@ -1,82 +1,89 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { LoginUser } from "../../redux/actions/user.action";
-// import { userActions } from "../../redux/actions/user.action";
+import axiosInstance from "../../_apis/userApis";  // Đảm bảo đường dẫn chính xác
+import { useNavigate } from 'react-router-dom';
+import { LeftContent } from "../../components/LeftContent";  // Giả sử bạn có LeftContent trong dự án
 
-import { LeftContent } from "../../components/LeftContent";
+function LoginForm() {
+    const [email, setUserEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate(); // Hook để điều hướng
 
-export function Login() {
-    const user = useSelector((state) => state.user.user);
-    const dispatch = useDispatch();
-    const [user_email, setUserEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    function handleSubmit(event) {
+    async function handleLogin(event) {
         event.preventDefault();
-        
-        if (!user_email || !password) {
+
+        if (!email || !password) {
             alert("Please fill all the fields");
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const checkUser = users.find((user) => user.user_email === user_email && user.password === password);
+        try {
+            // Gửi request đăng nhập tới API
+            const response = await axiosInstance.post('/users/login', {
+                email,
+                password,
+            });
 
-        if (!checkUser) {
-            alert("User not found");
-            return;
-        } else {
-            dispatch(LoginUser(checkUser));
-            console.log(user)
-            alert("Login Successful");
+            // Xử lý khi đăng nhập thành công
+            alert('Đăng nhập thành công!');
+            console.log('Login success:', response.data);
+            localStorage.setItem('token', response.data.token); // Lưu JWT token vào localStorage
+            navigate('/admin'); // Chuyển đến trang dashboard sau khi đăng nhập thành công
+        } catch (err) {
+            // Xử lý lỗi khi đăng nhập
+            setError('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!');
+            console.error('Error during login:', err);
         }
-        setUserEmail('')
-        setPassword('')
     }
 
     return (
-        <div className="login">
-            <LeftContent />
-            <form className="form" onSubmit={handleSubmit}>
-                <div className="title">
-                    <h2 className="welcome-message__title">Welcome back!</h2>
-                    <p className="p">Login to Get Started</p>
+        <form className="form" onSubmit={handleLogin}>
+            <div>
+                <div className="form-title">
+                    <h1 className="text-3xl font-extrabold dark:text-white">
+                        Welcome Back!
+                    </h1>
+                    <p className="p">Login to Your Account</p>
                 </div>
-                <div className="form-field">
-                    <div className="input-field">
-                        <label className="label">Email</label>
-                        <input
-                            className="input-content"
-                            type="email"
-                            placeholder="Enter your Email"
-                            value={user_email}
-                            onChange={(event) => setUserEmail(event.target.value)}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <label className="label">Password</label>
-                        <input
-                            className="input-content"
-                            type="password"
-                            placeholder="At least 4 characters"
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
-                        />
-                    </div>
+                <div className="mb-5">
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="name@example.com"
+                        value={email}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        required
+                    />
                 </div>
-                <div className="form-bottom">
-                    <div >
-                        <p className="internal-link-text">
-                            Already have an account?
-                            <a href="/login" className="button__link">Login here</a>
-                        </p>
-                    </div>
-                    <button
-                        className="button"
-                        type="submit"
-                    >Login</button>
+                <div className="mb-5">
+                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        required
+                    />
                 </div>
-            </form>
-        </div>
+
+                <div className="form-actions">
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                    {error && <p>{error}</p>}
+                </div>
+            </div>
+        </form>
     );
 };
+
+export default function LoginPage() {
+    return (
+        <div className="login">
+            <LeftContent />
+            <LoginForm />
+        </div>
+    );
+}

@@ -1,16 +1,19 @@
 import '../styles/App.css'
 import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AdminPanel from '../pages/AdminPanel'
-import Register  from '../pages/Register'
-import { Login } from '../pages/Login'
-const App= () => {
-  let isAuth = false
-  let isLogin = false
+import RegisterPage  from '../pages/Register'
+import LoginPage from '../pages/Login'
+const App = () => {
   return (
-    <div>
-        {!isAuth ? <Register /> : isLogin ?  <AdminPanel /> : <Login />}
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App

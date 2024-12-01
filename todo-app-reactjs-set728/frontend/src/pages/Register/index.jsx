@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import axiosInstance from "../../_apis/userApis";
-import { useDispatch, useSelector } from "react-redux";
-import { RegisterUser } from "../../redux/actions/user.action";
+import { useNavigate } from 'react-router-dom';
 import { LeftContent } from "../../components/LeftContent";
 
 function RegisterForm() {
-    const dispatch = useDispatch();
 
     const [name, setUserName] = useState('')
     const [email, setUserEmail] = useState('')
@@ -13,6 +11,7 @@ function RegisterForm() {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const [error, setError] = useState('');
+    const navigate = useNavigate(); // Hook để điều hướng
 
     async function handleRegister(event) {
         event.preventDefault();
@@ -29,7 +28,7 @@ function RegisterForm() {
 
         try {
             // Gửi request đăng ký tới API
-            const response = await axiosInstance.post('/register', {
+            const response = await axiosInstance.post('/users/register', {
                 name,
                 email,
                 password,
@@ -38,6 +37,7 @@ function RegisterForm() {
             // Xử lý khi đăng ký thành công
             alert('Đăng ký thành công!');
             console.log(response.data);
+            navigate('/login'); // Chuyển đến trang đăng nhập
         } catch (err) {
             // Xử lý lỗi khi đăng ký
             setError('Đăng ký thất bại, vui lòng thử lại!');
@@ -111,8 +111,8 @@ function RegisterForm() {
                         <label htmlFor="login-page" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Already have an account? <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">Login here</a></label>
                     </div>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
+                    {error && <p>{error}</p>}
                 </div>
-
             </div>
         </form>
     );
