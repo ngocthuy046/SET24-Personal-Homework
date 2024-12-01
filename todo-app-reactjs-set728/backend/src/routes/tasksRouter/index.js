@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get('/', authenticateUser, getTasks); 
 router.post('/', authenticateUser, createTask); 
-router.patch('/:id', authenticateUser, toggleTask); 
+router.patch('/:id/toggle', authenticateUser, toggleTask); 
 router.delete('/:id', authenticateUser, deleteTask); 
 router.put('/:id', authenticateUser, updateTaskTitle); 
 
