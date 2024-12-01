@@ -58,4 +58,13 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser };
+const logoutUser = (req, res) => {
+    try {
+        // Ở phía server stateless, logout chỉ trả lời client để xóa token
+        res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+module.exports = { registerUser, loginUser, logoutUser };

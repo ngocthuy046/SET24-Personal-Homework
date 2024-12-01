@@ -1,5 +1,6 @@
 const express = require('express')
-const { registerUser, loginUser } = require('../../controllers/usersController')
+const { registerUser, loginUser, logoutUser } = require('../../controllers/usersController')
+const authenticateUser = require('../../middlewares/authMiddleware')
 
 const router = express.Router();
 
@@ -8,5 +9,8 @@ router.post('/register', registerUser);
 
 // Route đăng nhập người dùng
 router.post('/login', loginUser);
+
+// Route đăng xuất người dùng
+router.delete('/logout', authenticateUser, logoutUser)
 
 module.exports = router;

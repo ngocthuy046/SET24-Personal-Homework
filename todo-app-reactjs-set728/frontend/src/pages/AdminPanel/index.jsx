@@ -1,9 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from "../../_apis/userApis"; 
-import TaskItem from '../../components/TaskItem';
-import { fetchTasks, toggleTaskComplete, deleteTask, editTaskTitle } from '../../_apis/taskApis'; // Import các hàm từ taskApis
+import { useNavigate } from 'react-router-dom'; // Dùng để chuyển hướng trang
+import axios from 'axios';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+    // Hàm xử lý logout
+    const handleLogout = async () => {
+        try {
+            // Lấy token từ localStorage
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                alert('You are not logged in!');
+                return;
+            }
+
+            // Gửi yêu cầu logout tới backend
+            const response = await axios.delete('http://127.0.0.1:3000/api/users/logout', {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Gửi token qua header
+                },
+            });
+
+            // Nếu logout thành công, xóa token ở client
+            if (response.status === 200) {
+                localStorage.removeItem('token'); // Xóa token
+                alert(response.data.message); // Hiển thị thông báo logout thành công
+                navigate('/login'); // Chuyển hướng về trang đăng nhập
+            }
+        } catch (error) {
+            console.error('Logout failed:', error.response?.data || error.message);
+            alert('Logout failed. Please try again!');
+        }
+    };
 
   return (
     <header className="header">
@@ -15,12 +45,12 @@ const Header = () => {
             alt="User avatar"
             className="user-avatar"
           />
-          <p className="user-name">Hello</p>
+          <p className="user-name">Welcome, Hello</p>
         </div>
         <button
           className="logout-button"
           aria-label="Logout"
-
+          onClick={handleLogout}
         >
           <img
             loading="lazy"
@@ -35,94 +65,7 @@ const Header = () => {
 }
 
 function TaskManager() {
-  const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState('all'); // Lưu trạng thái lọc
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [newTitle, setNewTitle] = useState('');
-
-  // Lấy danh sách tasks khi component được render hoặc khi filter thay đổi
-  useEffect(() => {
-    async function fetchAllTasks() {
-      try {
-        const tasksData = await fetchTasks(filter);
-        setTasks(tasksData);
-      } catch (err) {
-        console.error('Failed to fetch tasks:', err);
-      }
-    }
-    fetchAllTasks();
-  }, [filter]);
-
-  // Hàm xử lý thay đổi trạng thái hoàn thành của task
-  async function handleToggleComplete(taskId) {
-    try {
-      const updatedTask = tasks.find(task => task._id === taskId);
-      updatedTask.completed = !updatedTask.completed; // Toggle trạng thái hoàn thành
-      await toggleTaskComplete(taskId, updatedTask); // Gửi request cập nhật task
-      setTasks(tasks.map(task => task._id === taskId ? updatedTask : task)); // Cập nhật lại trạng thái tasks
-    } catch (err) {
-      console.error('Failed to update task:', err);
-    }
-  }
-
-  // Hàm xử lý xóa task
-  async function handleDelete(taskId) {
-    try {
-      await deleteTask(taskId); // Gửi request xóa task
-      setTasks(tasks.filter(task => task._id !== taskId)); // Cập nhật lại danh sách tasks
-    } catch (err) {
-      console.error('Failed to delete task:', err);
-    }
-  }
-
-  // Hàm xử lý sửa tiêu đề task
-  async function handleEditTitle(taskId) {
-    if (!newTitle) return;
-
-    try {
-      await editTaskTitle(taskId, newTitle); // Gửi yêu cầu sửa tiêu đề
-      setTasks(tasks.map(task =>
-        task._id === taskId ? { ...task, title: newTitle } : task
-      ));
-      setNewTitle('');
-      setEditingTaskId(null); // Tắt chế độ chỉnh sửa
-    } catch (err) {
-      console.error('Failed to edit task title:', err);
-    }
-  }
-
-  return (
-    <div className="dashboard">
-      <h1>Your Tasks</h1>
-
-      {/* Filter Tasks */}
-      <div className="filter">
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('done')}>Done</button>
-        <button onClick={() => setFilter('undone')}>Undone</button>
-      </div>
-
-      <div className="task-list">
-        {tasks.length === 0 ? (
-          <p>No tasks available.</p>
-        ) : (
-          tasks.map(task => (
-            <TaskItem
-              key={task._id}
-              task={task}
-              onDelete={handleDelete}
-              onToggleComplete={handleToggleComplete}
-              onEditTitle={handleEditTitle}
-              isEditing={editingTaskId === task._id}
-              setNewTitle={setNewTitle}
-              newTitle={newTitle}
-              setEditingTaskId={setEditingTaskId}
-            />
-          ))
-        )}
-      </div>
-    </div>
-  );
+  
 }
 
 export default function AdminPanel() {
