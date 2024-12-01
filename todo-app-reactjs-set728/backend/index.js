@@ -1,14 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 
 const tasksRouter = require('./src/routes/tasksRouter')
 const usersRouter = require('./src/routes/usersRouter')
 
+// Khởi tạo dotenv để sử dụng biến môi trường
+dotenv.config();
+
 const app = express();
-app.use(express.json());
+
+// Sử dụng body-parser để đọc dữ liệu JSON trong body của request
+app.use(bodyParser.json());
 
 // Kết nối tới MongoDB
-mongoose.connect('mongodb+srv://thuy46:mypassword@mongo.ycn9h.mongodb.net/todo_app', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://thuy46:mypassword@mongo.ycn9h.mongodb.net/todo_app', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => {
         console.log('Kết nối MongoDB thành công!');
     })
@@ -16,9 +26,11 @@ mongoose.connect('mongodb+srv://thuy46:mypassword@mongo.ycn9h.mongodb.net/todo_a
         console.error('Lỗi kết nối MongoDB:', err);
     });
 
-// Sử dụng tasksRouter
-app.use('/tasks', tasksRouter);
-app.use('/users', usersRouter)
+// Đăng ký route quản lý task
+app.use('/api/tasks', tasksRouter);
+
+// Kết nối router vào ứng dụng Express
+app.use('/api/users', usersRouter);
 
 // Khởi chạy server
 const PORT = 3000;
