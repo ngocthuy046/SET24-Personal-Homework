@@ -39,7 +39,7 @@ const Header = () => {
         <div className="user">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c6a2da0ed470c0d685115f59a09380b651780ed1c1e2895db906bf53a1d4f9e?apiKey=7a3c0c6db776404c888c5b6f6be62ebf&"
+            src="https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/432997673_2992543417552585_5594190855096017524_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=eA8XqAIdbq4Q7kNvgG_dtjP&_nc_zt=23&_nc_ht=scontent-hkg4-1.xx&_nc_gid=AlhfQB7t9vb7P5N2dRcDqTK&oh=00_AYBEop782lIvc4NrY42oPaQXw1R91IQfPKW5x_4tYjhpbA&oe=67522F85"
             alt="User avatar"
             className="user-avatar"
           />

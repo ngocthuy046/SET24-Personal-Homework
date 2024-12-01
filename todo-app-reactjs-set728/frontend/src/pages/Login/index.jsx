@@ -23,7 +23,7 @@ function LoginForm() {
             alert('Login successfull!');
             console.log(response)
             localStorage.setItem('token', response.token);
-            localStorage.setItem('user', JSON.stringify({ name: response.username })); 
+            localStorage.setItem('user', JSON.stringify({ name: response.user.name })); 
             navigate('/admin'); 
         } catch (err) {
             setError('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!');

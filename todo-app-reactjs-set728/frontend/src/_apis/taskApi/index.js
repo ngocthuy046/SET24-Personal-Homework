@@ -49,7 +49,7 @@ export const deleteTask = async (taskId, token) => {
 
 export const updateTaskTitle = async (taskId, title, token) => {
   try {
-    const response = await axios.patch(
+    const response = await axios.put(
       `${API_URL}/${taskId}`,
       { title },
       {
